@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.profile:
                     replaceFragment(new ProfileFragment());
                     break;
-                case R.id.settings:
-                    replaceFragment(new SettingsFragment());
+                case R.id.notification:
+                    replaceFragment(new NotificationFragment());
                     break;
                 case R.id.search:
                     replaceFragment(new SearchFragment());
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
 
     }
