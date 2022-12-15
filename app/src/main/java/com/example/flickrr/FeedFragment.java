@@ -2,18 +2,24 @@ package com.example.flickrr;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FeedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FeedFragment extends Fragment {
+public class FeedFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,5 +66,39 @@ public class FeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_feed, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //hardcoded just for testing
+        view.findViewById(R.id.feed_comment).setOnClickListener(this);
+        view.findViewById(R.id.feed_comment1).setOnClickListener(this);
+        view.findViewById(R.id.feed_comment2).setOnClickListener(this);
+        view.findViewById(R.id.feed_comment_layout).setOnClickListener(this);
+        view.findViewById(R.id.feed_comment_layout1).setOnClickListener(this);
+        view.findViewById(R.id.feed_comment_layout2).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.feed_comment:
+            case R.id.feed_comment1:
+            case R.id.feed_comment2:
+            case R.id.feed_comment_layout:
+            case R.id.feed_comment_layout1:
+            case R.id.feed_comment_layout2:
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_right_to_left,
+                                R.anim.enter_left_to_right, R.anim.exit_left_to_right)
+                        .replace(R.id.frame_layout, new LikeAndCommentFragment())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+        }
     }
 }

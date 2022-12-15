@@ -17,12 +17,23 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <!-- login activity-->
+    <string name="login_policy">By continuing, you agree to our Terms of Service and have read our Privacy Policy.</string>
+    <string name="character_requirement">12 or more characters</string>
+    <string name="space_requirement">No leading spaces</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_fname">First name</string>
+    <string name="prompt_lname">Last name</string>
+    <string name="prompt_dob">Date of birth</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="not_flickr_member">Not a Flickr member?</string>
+    <string name="already_flickr_member">Already a Flickr member?</string>
 </resources>
