@@ -43,16 +43,16 @@ public class PeopleFragment extends Fragment {
 
     private List<People> getListPeople(){
         List<People> list = new ArrayList<>();
-        list.add(new People(R.drawable.img1, "Alice", "Hanoi"));
-        list.add(new People(R.drawable.img2, "Bob", "London"));
-        list.add(new People(R.drawable.img3, "Caitlyn", "Paris"));
-        list.add(new People(R.drawable.img4, "Duo", "Ohio"));
-        list.add(new People(R.drawable.img5, "Emily", "Vancouver"));
-        list.add(new People(R.drawable.img6, "Fofana", "Tokyo"));
-        list.add(new People(R.drawable.img7, "Granger", "Osaka"));
-        list.add(new People(R.drawable.img8, "Hugo", "Beijing"));
-        list.add(new People(R.drawable.img9, "Iva", "New York"));
-        list.add(new People(R.drawable.img10, "Anna", "Las Vegas"));
+        list.add(new People(R.drawable.img1, "Alice", "69K Photos"));
+        list.add(new People(R.drawable.img2, "Bob", "357 Photos"));
+        list.add(new People(R.drawable.img3, "Caitlyn", "235 Photos"));
+        list.add(new People(R.drawable.img4, "Duo", "584K Photos"));
+        list.add(new People(R.drawable.img5, "Emily", "98 Photos"));
+        list.add(new People(R.drawable.img6, "Fofana", "729 Photos"));
+        list.add(new People(R.drawable.img7, "Granger", "333K Photos"));
+        list.add(new People(R.drawable.img8, "Hugo", "613K Photos"));
+        list.add(new People(R.drawable.img9, "Iva", "310 Photos"));
+        list.add(new People(R.drawable.img10, "Anna", "9K Photos"));
         return list;
     }
 }
