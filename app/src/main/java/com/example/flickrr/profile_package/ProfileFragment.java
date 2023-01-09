@@ -1,26 +1,24 @@
-package com.example.flickrr.search_package;
+package com.example.flickrr.profile_package;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.example.flickrr.R;
+import com.example.flickrr.profile_package.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-public class SearchFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    public SearchFragment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
-//    private EditText search;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
@@ -28,11 +26,10 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
-//        search = (EditText) view.findViewById(R.id.search_bar);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        mTabLayout = view.findViewById(R.id.search_tab_layout);
-        mViewPager = view.findViewById(R.id.search_view_pager);
+        mTabLayout = view.findViewById(R.id.profile_tab_layout);
+        mViewPager = view.findViewById(R.id.profile_view_pager);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), 1);
         mViewPager.setAdapter(viewPagerAdapter);
