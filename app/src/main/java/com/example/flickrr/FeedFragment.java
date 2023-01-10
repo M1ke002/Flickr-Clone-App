@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
@@ -40,6 +41,7 @@ public class FeedFragment extends Fragment {
     private Flickr flickr;
     private RecyclerView recyclerView;
     private ImagePostAdapter adapter;
+    private TextView loadingText;
     // Initialize the Flickr object with your API key and secret
     private final String API_KEY = "54045897f37e9365525445205542d2c5";
     private final String API_SECRET = "8edc1811276afa8b";
@@ -101,6 +103,7 @@ public class FeedFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        loadingText = view.findViewById(R.id.loading_text);
 
         // Load the first page of data
         loadData();
@@ -134,10 +137,18 @@ public class FeedFragment extends Fragment {
     private void loadData() {
         AsyncTask<Void, Void, Void> getData = new AsyncTask<Void, Void, Void>() {
             private List<PostData> res;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loadingText.setVisibility(View.VISIBLE);
+            }
+
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             protected Void doInBackground(Void... voids) {
                 try {
+                    flickr = new Flickr(API_KEY, API_SECRET, new REST());
                     res = getNewsFeedData();
                 } catch (FlickrException e) {
                     StringWriter errors = new StringWriter();
@@ -150,6 +161,7 @@ public class FeedFragment extends Fragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
+                loadingText.setVisibility(View.GONE);
 
                 // Create the adapter and set it on the RecyclerView
                 adapter = new ImagePostAdapter(res);
@@ -194,11 +206,11 @@ public class FeedFragment extends Fragment {
 
     private List<PostData> getNewsFeedData() throws FlickrException {
         List<PostData> postData = new ArrayList<>();
-        flickr = new Flickr(API_KEY, API_SECRET, new REST());
+
 
         InterestingnessInterface i = flickr.getInterestingnessInterface();
 //        PhotoList<Photo> photos = photosInterface.getRecent(null, 4, currentPage);
-        PhotoList<Photo> photos = i.getList("2022-12-10", null, 4, currentPage);
+        PhotoList<Photo> photos = i.getList("2022-12-10", null, PAGE_SIZE, currentPage);
 
         Log.d("photos",""+photos.size());
 

@@ -79,7 +79,7 @@ public class ImagePostAdapter extends RecyclerView.Adapter<ImagePostAdapter.View
 
             try {
                 Picasso.get().load(postData.imageUrl).into(imageView);
-//                Picasso.get().load(postData.avatarUrl).into(avatar);
+                Picasso.get().load(postData.avatarUrl).error(R.drawable.avatar1).into(avatar);
             } catch (Exception e) {
                 StringWriter errors = new StringWriter();
                 e.printStackTrace(new PrintWriter(errors));

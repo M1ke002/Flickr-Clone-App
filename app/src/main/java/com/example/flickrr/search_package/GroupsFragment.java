@@ -43,7 +43,6 @@ public class GroupsFragment extends Fragment {
 
     private List<Groups> getListGroups(){
         List<Groups> list = new ArrayList<>();
-
         return list;
     }
 }
