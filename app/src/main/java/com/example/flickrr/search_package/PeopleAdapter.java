@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flickrr.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -34,7 +35,17 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
         if(people == null){
             return;
         }
-        holder.imgPeople.setImageResource(people.getImage());
+
+        try {
+            Picasso.get().load(people.getUserv().getPhotosurl()).into(holder.imgPeople);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            holder.imgPeople.setImageResource(people.getImage());
+        }
+
+
         holder.tvName.setText(people.getName());
         holder.tvPhotos.setText(people.getPhotos());
     }

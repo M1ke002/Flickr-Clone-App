@@ -1,7 +1,29 @@
 package com.example.flickrr.search_package;
 
+import com.flickr4java.flickr.people.User;
+
 public class People {
     private int image;
+
+    public User getUserv() {
+        return userv;
+    }
+
+    public void setUserv(User userv) {
+        this.userv = userv;
+    }
+
+    private User userv;
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    protected String userid;
     private String name;
     private String photos;
 

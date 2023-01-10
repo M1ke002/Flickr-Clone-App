@@ -41,8 +41,8 @@ public class FeedFragment extends Fragment {
     private RecyclerView recyclerView;
     private ImagePostAdapter adapter;
     // Initialize the Flickr object with your API key and secret
-    private final String API_KEY = "5eba4641389babebdd82bb8be36c278b";
-    private final String API_SECRET = "629fc7a760570a91";
+    private final String API_KEY = "54045897f37e9365525445205542d2c5";
+    private final String API_SECRET = "8edc1811276afa8b";
 
     // Page size for the infinite scroll
     private static final int PAGE_SIZE = 4;
