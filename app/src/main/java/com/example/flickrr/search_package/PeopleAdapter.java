@@ -1,0 +1,62 @@
+package com.example.flickrr.search_package;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.flickrr.R;
+
+import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder>{
+    private List<People> mListPeople;
+
+    public PeopleAdapter(List<People> mListPeople){
+        this.mListPeople = mListPeople;
+    }
+
+    @NonNull
+    @Override
+    public PeopleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_people, parent, false);
+        return new PeopleViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PeopleViewHolder holder, int position) {
+        People people = mListPeople.get(position);
+        if(people == null){
+            return;
+        }
+        holder.imgPeople.setImageResource(people.getImage());
+        holder.tvName.setText(people.getName());
+        holder.tvPhotos.setText(people.getPhotos());
+    }
+
+    @Override
+    public int getItemCount() {
+        if(mListPeople != null){
+            return mListPeople.size();
+        }
+        return 0;
+    }
+
+    public class PeopleViewHolder extends RecyclerView.ViewHolder{
+        private CircleImageView imgPeople;
+        private TextView tvName;
+        private TextView tvPhotos;
+
+        public PeopleViewHolder(@NonNull View itemView){
+            super(itemView);
+            imgPeople = itemView.findViewById(R.id.img_people);
+            tvName = itemView.findViewById(R.id.tv_name_people);
+            tvPhotos = itemView.findViewById(R.id.tv_photos_people);
+        }
+    }
+}
