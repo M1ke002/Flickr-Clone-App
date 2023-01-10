@@ -14,7 +14,7 @@ public class PostData {
         this.comments = comments;
         this.title = title;
         this.imageUrl = imageUrl;
-        this.avatarUrl = avatarUrl;
+        this.avatarUrl = avatarUrl.replace("http","https");
     }
 
     @Override

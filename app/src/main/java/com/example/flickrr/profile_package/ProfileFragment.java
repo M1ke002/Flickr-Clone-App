@@ -8,10 +8,15 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.flickrr.R;
-import com.example.flickrr.profile_package.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+
+import com.example.flickrr.profile_package.ViewPagerAdapter;
+import com.flickr4java.flickr.FlickrException;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.List;
 
 public class ProfileFragment extends Fragment {
 

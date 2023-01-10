@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".FeedFragment">
 
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:textSize="18dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
