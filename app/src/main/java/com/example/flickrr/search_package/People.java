@@ -4,6 +4,7 @@ import com.flickr4java.flickr.people.User;
 
 public class People {
     private int image;
+    public String avatar;
 
     public User getUserv() {
         return userv;
@@ -11,6 +12,7 @@ public class People {
 
     public void setUserv(User userv) {
         this.userv = userv;
+        this.avatar = userv.getSecureBuddyIconUrl();
     }
 
     private User userv;
@@ -21,6 +23,7 @@ public class People {
 
     public void setUserid(String userid) {
         this.userid = userid;
+
     }
 
     protected String userid;
@@ -31,6 +34,7 @@ public class People {
         this.image = image;
         this.name = name;
         this.photos = photos;
+
     }
 
     public int getImage(){
@@ -55,5 +59,14 @@ public class People {
 
     public void setPhotos(String address) {
         this.photos = photos;
+    }
+
+    @Override
+    public String toString() {
+        return "People{" +
+                "\nimage " + image +
+                "\navatar " + this.avatar+
+                "\nDescription " + userv.getDescription()+
+                '}';
     }
 }

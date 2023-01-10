@@ -37,7 +37,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
         }
 
         try {
-            Picasso.get().load(people.getUserv().getPhotosurl()).into(holder.imgPeople);
+            Picasso.get().load(people.avatar).into(holder.imgPeople);
         }
         catch (Exception e)
         {

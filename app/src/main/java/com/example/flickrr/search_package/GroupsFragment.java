@@ -43,16 +43,6 @@ public class GroupsFragment extends Fragment {
 
     private List<Groups> getListGroups(){
         List<Groups> list = new ArrayList<>();
-        list.add(new Groups(R.drawable.img1, "The Boys", "500 Members", "96K Photos"));
-        list.add(new Groups(R.drawable.img1, "Me and friends", "314 Members", "753 Photos"));
-        list.add(new Groups(R.drawable.img1, "Girl generation", "628 Members", "31K Photos"));
-        list.add(new Groups(R.drawable.img1, "Learn to rock", "10 Members", "84K Photos"));
-        list.add(new Groups(R.drawable.img1, "NSND", "50 Members", "98K Photos"));
-        list.add(new Groups(R.drawable.img1, "Mountain", "136 Members", "72K Photos"));
-        list.add(new Groups(R.drawable.img1, "Baro", "1K Members", "33K Photos"));
-        list.add(new Groups(R.drawable.img1, "IT community", "24 Members", "613 Photos"));
-        list.add(new Groups(R.drawable.img1, "Bros", "7 Members", "31 Photos"));
-        list.add(new Groups(R.drawable.img1, "Sis", "360 Members", "4K Photos"));
         return list;
     }
 }
