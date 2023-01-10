@@ -30,7 +30,7 @@
             app:cardCornerRadius="40dp">
 
             <ImageView
-                android:id="@+id/feed_avatar1"
+                android:id="@+id/feed_avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
@@ -112,6 +112,7 @@
             app:tint="@color/grey" />
 
         <TextView
+            android:id="@+id/feed_favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1755"
@@ -119,7 +120,7 @@
             android:layout_centerVertical="true"/>
 
         <ImageButton
-            android:id="@+id/feed_comment1"
+            android:id="@+id/feed_commentBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -130,10 +131,11 @@
             app:tint="@color/grey" />
 
         <TextView
+            android:id="@+id/feed_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/feed_comment1"
+            android:layout_toEndOf="@id/feed_commentBtn"
             android:text="70" />
 
         <ImageButton
@@ -200,7 +202,7 @@
             android:id="@+id/feed_comment_username1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/feed_total_comments1"
+            android:layout_toStartOf="@id/feed_total_comments"
             android:layout_toEndOf="@+id/feed_comment_section1"
             android:text="Cristiano Ronaldo"
             android:textSize="15sp"
@@ -211,14 +213,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/feed_comment_username1"
-            android:layout_toStartOf="@id/feed_total_comments1"
+            android:layout_toStartOf="@id/feed_total_comments"
             android:layout_toEndOf="@id/feed_comment_section1"
             android:text="Love it!"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/feed_total_comments1"
+            android:id="@+id/feed_total_comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

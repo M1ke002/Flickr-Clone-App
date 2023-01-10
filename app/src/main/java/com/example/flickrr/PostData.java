@@ -2,24 +2,30 @@ package com.example.flickrr;
 
 public class PostData {
     public String username;
-    public String likes;
+    public String favorites;
+    public String comments;
     public String title;
-    public String url;
+    public String imageUrl;
+    public String avatarUrl;
 
-    public PostData(String username, String likes, String title, String url) {
+    public PostData(String username, String favorites, String comments, String title, String imageUrl, String avatarUrl) {
         this.username = username;
-        this.likes = likes;
+        this.favorites = favorites;
+        this.comments = comments;
         this.title = title;
-        this.url = url;
+        this.imageUrl = imageUrl;
+        this.avatarUrl = avatarUrl;
     }
 
     @Override
     public String toString() {
         return "PostData{" +
                 "username='" + username + '\'' +
-                ", likes='" + likes + '\'' +
+                ", favorites='" + favorites + '\'' +
+                ", comments='" + comments + '\'' +
                 ", title='" + title + '\'' +
-                ", url='" + url + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
                 '}';
     }
 }

@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.flickr4java.flickr.photos.Photo;
 import com.squareup.picasso.Picasso;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 public class ImagePostAdapter extends RecyclerView.Adapter<ImagePostAdapter.ViewHolder> {
@@ -50,15 +52,23 @@ public class ImagePostAdapter extends RecyclerView.Adapter<ImagePostAdapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
+        ImageView avatar;
         TextView usernameTextView;
         TextView postTitle;
+        TextView favorites;
+        TextView comments;
+        TextView commentsTotal;
         TextView recommendationTextView;
         ImageButton moreButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.post_img);
+            avatar = itemView.findViewById(R.id.feed_avatar);
             postTitle = itemView.findViewById(R.id.post_title);
+            favorites = itemView.findViewById(R.id.feed_favorites);
+            comments = itemView.findViewById(R.id.feed_comment);
+            commentsTotal = itemView.findViewById(R.id.feed_total_comments);
             usernameTextView = itemView.findViewById(R.id.feed_username);
             recommendationTextView = itemView.findViewById(R.id.feed_recommend);
             moreButton = itemView.findViewById(R.id.feed_more);
@@ -68,15 +78,21 @@ public class ImagePostAdapter extends RecyclerView.Adapter<ImagePostAdapter.View
             // Set the data for the views using the Photo object
 
             try {
-                Picasso.get().load(postData.url).into(imageView);
+                Picasso.get().load(postData.imageUrl).into(imageView);
+//                Picasso.get().load(postData.avatarUrl).into(avatar);
             } catch (Exception e) {
-                e.printStackTrace();
+                StringWriter errors = new StringWriter();
+                e.printStackTrace(new PrintWriter(errors));
+                Log.d("picasso",errors.toString());
             }
 
             // Set the username and recommendation text using the data from the Photo object
             usernameTextView.setText(postData.username);
             postTitle.setText(postData.title);
             recommendationTextView.setText("Recommended");
+            favorites.setText(postData.favorites);
+            comments.setText(postData.comments);
+            commentsTotal.setText(postData.comments + " of " + postData.comments);
         }
     }
 

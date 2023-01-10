@@ -22,6 +22,7 @@ import com.flickr4java.flickr.REST;
 import com.flickr4java.flickr.people.PeopleInterface;
 import com.flickr4java.flickr.photos.PhotoList;
 import com.flickr4java.flickr.photos.PhotosInterface;
+import com.flickr4java.flickr.interestingness.InterestingnessInterface;
 import com.flickr4java.flickr.photos.Photo;
 
 import java.io.PrintWriter;
@@ -195,30 +196,42 @@ public class FeedFragment extends Fragment {
         List<PostData> postData = new ArrayList<>();
         flickr = new Flickr(API_KEY, API_SECRET, new REST());
 
-        PhotosInterface photosInterface = flickr.getPhotosInterface();
-        PhotoList<Photo> photos = photosInterface.getRecent(null, 4, currentPage);
+        InterestingnessInterface i = flickr.getInterestingnessInterface();
+//        PhotoList<Photo> photos = photosInterface.getRecent(null, 4, currentPage);
+        PhotoList<Photo> photos = i.getList("2022-12-10", null, 4, currentPage);
 
         Log.d("photos",""+photos.size());
 
         photos.forEach(photo -> {
             // Get username
             String userId = photo.getOwner().getId();
+
             PeopleInterface peopleInterface = flickr.getPeopleInterface();
+            String avatarUrl = "";
             String username = "";
             try {
                 username = peopleInterface.getInfo(userId).getUsername();
+                avatarUrl = peopleInterface.getInfo(userId).getBuddyIconUrl();
             } catch (FlickrException e) {
-                e.printStackTrace();
+                StringWriter errors = new StringWriter();
+                e.printStackTrace(new PrintWriter(errors));
+                Log.d("flickr error",errors.toString());
             }
 
-            Log.d("post data",username+ " "+String.valueOf(photo.getStats().getFavorites())+" "+ photo.getTitle()+ " "+photo.getMediumUrl());
+//            Log.d("post data",username+ " "+String.valueOf(photo.getStats().getFavorites())+" "+ photo.getTitle()+ " "+photo.getMediumUrl());
 
-            postData.add(new PostData(
+            PostData data = new PostData(
                     username,
                     String.valueOf(photo.getStats().getFavorites()),
+                    String.valueOf(photo.getStats().getComments()),
                     photo.getTitle(),
-                    photo.getMediumUrl()
-            ));
+                    photo.getMediumUrl(),
+                    avatarUrl
+            );
+
+            Log.d("post data",data.toString());
+
+            postData.add(data);
         });
         return postData;
     }
