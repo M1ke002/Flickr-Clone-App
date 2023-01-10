@@ -79,7 +79,6 @@ public class PeopleFragment extends Fragment {
         AsyncTask<Void, Void, Void> getData = new AsyncTask<Void, Void, Void>() {
             private List<People>  res;
 
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             protected Void doInBackground(Void... voids) {
                 try {
@@ -101,6 +100,7 @@ public class PeopleFragment extends Fragment {
                 rcvPeople.setAdapter(peopleAdapter);
             }
         };
+        getData.execute();
     }
     private List<People> getListPeople() throws FlickrException {
         List<People> list = new ArrayList<>();
@@ -109,18 +109,41 @@ public class PeopleFragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
 
         PeopleInterface peopleInterface = flickr.getPeopleInterface();
-        User user = peopleInterface.findByUsername(sharedPreferences.getString("Search",""));
-        People userc ;
-        userc = new People(R.drawable.img1,user.getUsername(),user.getPhotosCount()+"Photos ");
-        userc.setUserid(user.getId());
-        userc.setUserv(user);
-        list.add(userc);
-        User user2 = peopleInterface.findByEmail(sharedPreferences.getString("Search",""));
-        People userc2 ;
-        userc2 = new People(R.drawable.img1,user2.getUsername(),user2.getPhotosCount()+"Photos ");
-        userc2.setUserid(user2.getId());
-        userc2.setUserv(user2);
-        list.add(userc2);
+        User user = null,user2=null;
+
+        try {
+            user = peopleInterface.findByUsername(sharedPreferences.getString("Search",""));
+
+            People userc ;
+            userc = new People(R.drawable.img1,user.getUsername(),user.getPhotosCount()+"Photos ");
+            userc.setUserid(user.getId());
+            userc.setUserv(user);
+            Log.d("stffff",userc.toString());
+            list.add(userc);
+
+
+
+        } catch (FlickrException e) {
+            e.printStackTrace();
+
+        }
+
+        try{
+            user2 = peopleInterface.findByEmail(sharedPreferences.getString("Search",""));
+            People userc2 ;
+            userc2 = new People(R.drawable.img1,user2.getUsername(),user2.getPhotosCount()+"  Photos ");
+            userc2.setUserid(user2.getId());
+            userc2.setUserv(user2);
+            Log.d("stffff",userc2.toString());
+            list.add(userc2);
+            Log.d("stffff",user2.getUsername());
+        }
+        catch (FlickrException e)
+        {
+            e.printStackTrace();
+        }
+
+
         return list;
     }
 }
