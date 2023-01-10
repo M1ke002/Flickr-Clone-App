@@ -13,6 +13,8 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.flickrr.R;
@@ -27,6 +29,7 @@ public class SearchFragment extends Fragment {
     public EditText searchbar;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+    private Button button;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -39,8 +42,9 @@ public class SearchFragment extends Fragment {
         mTabLayout = view.findViewById(R.id.search_tab_layout);
         mViewPager = view.findViewById(R.id.search_view_pager);
         searchbar = view.findViewById(R.id.search_bar);
-        sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
 
+        sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), 1);
         searchbar.setText(sharedPreferences.getString("Search",""));
         searchbar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -62,10 +66,26 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), 1);
+
         mViewPager.setAdapter(viewPagerAdapter);
 
         mTabLayout.setupWithViewPager(mViewPager);
+        button = view.findViewById(R.id.search_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), 1);
+                mViewPager.setAdapter(viewPagerAdapter);
+                mTabLayout.setupWithViewPager(mViewPager);
+                try {
+
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(getContext().INPUT_METHOD_SERVICE) ;
+                    imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+            }
+        });
         return view;
     }
 }
