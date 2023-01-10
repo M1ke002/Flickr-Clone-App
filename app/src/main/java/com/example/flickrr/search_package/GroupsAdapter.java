@@ -1,5 +1,6 @@
 package com.example.flickrr.search_package;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flickrr.R;
+import com.flickr4java.flickr.groups.Group;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsViewHolder>{
-    private List<Groups> mListGroups;
+    private Collection<Group> mListGroups;
 
-    public GroupsAdapter(List<Groups> mListGroups){
+    public GroupsAdapter(Collection<Group> mListGroups){
         this.mListGroups = mListGroups;
     }
 
@@ -30,14 +35,12 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
 
     @Override
     public void onBindViewHolder(@NonNull GroupsViewHolder holder, int position) {
-        Groups groups = mListGroups.get(position);
+        List<Group> a = new ArrayList<>(mListGroups);
+        Group groups = a.get(position);
         if(groups == null){
             return;
         }
-        holder.imgGroups.setImageResource(groups.getImage());
-        holder.tvName.setText(groups.getName());
-        holder.tvMembers.setText(groups.getMembers());
-        holder.tvPhotos.setText(groups.getPhotos());
+        holder.bind(groups);
     }
 
     @Override
@@ -61,5 +64,17 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupsView
             tvMembers = itemView.findViewById(R.id.tv_members);
             tvPhotos = itemView.findViewById(R.id.tv_photos_groups);
         }
+        public void bind(Group c){
+            tvName.setText(c.getName());
+            tvPhotos.setText(c.getPhotoCount() +" Photos ");
+            tvMembers.setText(c.getMembers() + " Members");
+            Log.e("photo",c.getSecureBuddyIconUrl());
+            Picasso.get().load(c.getSecureBuddyIconUrl()).into(imgGroups);
+        }
     }
+    public void addData(Collection<Group> res) {
+        mListGroups.addAll(res);
+        notifyDataSetChanged();
+    }
+
 }
