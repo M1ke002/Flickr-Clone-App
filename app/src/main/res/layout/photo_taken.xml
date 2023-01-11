@@ -27,6 +27,16 @@
         android:layout_centerHorizontal="true"
         >
 
+
     </EditText>
+
+    <Button
+        android:id="@+id/post"
+        android:text="Post"
+        android:layout_below="@+id/posttext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

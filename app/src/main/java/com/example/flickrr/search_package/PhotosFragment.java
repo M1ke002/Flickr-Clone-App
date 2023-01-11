@@ -40,7 +40,7 @@ public class PhotosFragment extends Fragment {
     private PhotoAdapter adapter;
     private final String API_KEY = "54045897f37e9365525445205542d2c5";
     private final String API_SECRET = "8edc1811276afa8b";
-
+    private SharedPreferences sharedPreferences;
 
     private static final int PAGE_SIZE = 5;
 
@@ -59,7 +59,7 @@ public class PhotosFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rcv_photo);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-
+        sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
         loadItems();
         // Add a scroll listener to the RecyclerView to detect when the user has scrolled to the end
         // of the list and start loading more data
@@ -96,7 +96,7 @@ public class PhotosFragment extends Fragment {
 
                 flickr = new Flickr(API_KEY, API_SECRET, new REST());
                 PhotosInterface photosInterface = flickr.getPhotosInterface();
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
+
                 SearchParameters searchParameters = new SearchParameters();
                 searchParameters.setText(sharedPreferences.getString("Search",""));
                 Log.e("what",searchParameters.getText());
@@ -134,7 +134,7 @@ public class PhotosFragment extends Fragment {
 
                 flickr = new Flickr(API_KEY, API_SECRET, new REST());
                 PhotosInterface photosInterface = flickr.getPhotosInterface();
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
+
                 SearchParameters searchParameters = new SearchParameters();
                 searchParameters.setText(sharedPreferences.getString("Search",""));
                 try {

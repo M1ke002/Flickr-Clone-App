@@ -36,12 +36,14 @@ import java.util.List;
 public class GroupsFragment extends Fragment {
     private RecyclerView rcvGroups;
     private GroupsAdapter groupsAdapter;
+    private SharedPreferences sharedPreferences;
     private final String API_KEY = "54045897f37e9365525445205542d2c5";
     private final String API_SECRET = "8edc1811276afa8b";
     private static final int PAGE_SIZE = 5;
     private int currentPage = 1;
     private boolean isLoading = false;
     private Flickr flickr;
+    private String namePackage;
     public GroupsFragment() {
         // Required empty public constructor
     }
@@ -56,6 +58,7 @@ public class GroupsFragment extends Fragment {
         rcvGroups.setLayoutManager(linearLayoutManager);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
         rcvGroups.addItemDecoration(itemDecoration);
+        sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
         loadItems();
         // Add a scroll listener to the RecyclerView to detect when the user has scrolled to the end
         // of the list and start loading more data
@@ -91,7 +94,7 @@ public class GroupsFragment extends Fragment {
                 flickr = new Flickr(API_KEY, API_SECRET, new REST());
                 GroupsInterface groupsInterface = flickr.getGroupsInterface();
 
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
+
 
                 try {
                     res = groupsInterface.search(sharedPreferences.getString("Search",""),PAGE_SIZE,currentPage);
@@ -131,7 +134,7 @@ public class GroupsFragment extends Fragment {
                 flickr = new Flickr(API_KEY, API_SECRET, new REST());
                 GroupsInterface groupsInterface = flickr.getGroupsInterface();
 
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
+
 
                 try {
                     res = groupsInterface.search(sharedPreferences.getString("Search",""),PAGE_SIZE,currentPage);

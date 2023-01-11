@@ -158,6 +158,13 @@ public class CameraActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.photo_taken);
         dialog.setCanceledOnTouchOutside(true);
         ImageView a =dialog.findViewById(R.id.imageView2);
+        Button b = dialog.findViewById(R.id.post);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CameraActivity.super.onBackPressed();
+            }
+        });
         a.setImageBitmap(sourceBitmap);
         dialog.show();
 

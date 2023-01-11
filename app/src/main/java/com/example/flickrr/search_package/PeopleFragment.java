@@ -39,14 +39,7 @@ public class PeopleFragment extends Fragment {
     private Flickr flickr;
     private final String API_KEY = "54045897f37e9365525445205542d2c5";
     private final String API_SECRET = "8edc1811276afa8b";
-
-
-    private static final int PAGE_SIZE = 8;
-
-    private int currentPage = 1;
-
-    private boolean isLoading = false;
-
+    private SharedPreferences sharedPreferences;
     public PeopleFragment() {
 
     }
@@ -62,7 +55,7 @@ public class PeopleFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         rcvPeople.setLayoutManager(linearLayoutManager);
 
-
+        sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
         rcvPeople.addItemDecoration(itemDecoration);
@@ -106,7 +99,7 @@ public class PeopleFragment extends Fragment {
         List<People> list = new ArrayList<>();
         flickr = new Flickr(API_KEY, API_SECRET, new REST());
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
+
 
         PeopleInterface peopleInterface = flickr.getPeopleInterface();
         User user = null,user2=null;
